@@ -1,8 +1,29 @@
 ﻿@{
+    @model List<WebApplication1.Models.Product>
     ViewData["Title"] = "Home Page";
+    int index = 1;
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Цена за штуку</th>
+            <th>Количество</th>
+            <th>Действие</th>
+        </tr>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@(index++)</td>
+                <td>@product.Category</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td>@product.Quantity</td>
+                <td>@product.Actions</td>
+            </tr>
+        }
+    </table>
 </div>
