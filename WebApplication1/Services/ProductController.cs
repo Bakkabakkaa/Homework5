@@ -1,9 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers;
+namespace WebApplication1.Services;
 
-public class ProductController : Controller
+public class ProductService
 {
     private string[] _typeOfEntertainment = new []{ "Книга", "Фильм", "Игра" };
     private string[] _nameOfTheGames = new[] { "Warcraft III", "Neighbours back From Hell", "Dota 2", "Zuma", "Heroes of Might and Magic III" };
@@ -16,14 +15,7 @@ public class ProductController : Controller
     
     private Random _random = new Random();
     
-    public IActionResult Index()
-    {
-        var products = GetAllProducts();
-        products = products.OrderBy(x => Guid.NewGuid()).ToList();
-        return View(products);
-    }
-
-    private List<Product> GetAllProducts()
+    public List<Product> GetAllProducts()
     {
         var products = new List<Product>();
         var id = 1;
@@ -67,7 +59,7 @@ public class ProductController : Controller
             });
         }
 
-        return products;
+        return products.OrderBy(x => Guid.NewGuid()).ToList();
 
     }
 }
